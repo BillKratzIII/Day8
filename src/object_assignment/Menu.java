@@ -5,51 +5,55 @@ import java.util.Scanner;
 public class Menu {
 
 	public static void main(String[] args) {
+		// create new PowerBoat Object
 		PowerBoat newBoat = new PowerBoat();
+		// Call method to build your boat
 		newBoat = createBoat();
-		runMenu(newBoat);	
+		// call method with options to use or modify your boat
+		runMenu(newBoat);
 	}
-	
-	public static void runMenu(PowerBoat theBoat){
+
+	// method with menu options to use the program
+	public static void runMenu(PowerBoat theBoat) {
 		boolean runProgram = true;
-		while(runProgram){
+		while (runProgram) {
 			Scanner sg = new Scanner(System.in);
 			printMenu();
 			int choice = sg.nextInt();
-		
-			switch (choice){ 
+
+			switch (choice) {
 			case 1:
 				theBoat.getStatus();
 				break;
-				
+
 			case 2:
 				theBoat.anchorBoat();
 				break;
-				
+
 			case 3:
 				theBoat.sinkBoat();
 				break;
-				
+
 			case 4:
 				theBoat.modifySize();
 				break;
-				
+
 			case 5:
 				theBoat.moveBoat();
 				break;
-				
+
 			case 6:
 				theBoat.useFuel();
 				break;
-				
+
 			case 7:
 				theBoat.addFuel();
 				break;
-				
+
 			case 8:
 				theBoat.modifyEngineData();
 				break;
-				
+
 			case 9:
 				System.out.println("Goodbye");
 				System.exit(0);
@@ -61,8 +65,9 @@ public class Menu {
 			}
 		}
 	}
-	
-	public static PowerBoat createBoat(){
+
+	// method to create a boat based on user input
+	public static PowerBoat createBoat() {
 		Scanner sf = new Scanner(System.in);
 		Scanner sg = new Scanner(System.in);
 		PowerBoat myBoat = new PowerBoat();
@@ -71,9 +76,9 @@ public class Menu {
 		myBoat.setBoatName(userInput);
 		System.out.println("Is your boat floating. Enter 1 for Yes or 0 for No.");
 		int i = sf.nextInt();
-		if(i == 1){
+		if (i == 1) {
 			myBoat.setFloating(true);
-		}else{
+		} else {
 			myBoat.setFloating(false);
 		}
 		System.out.println("Enter the length of your boat in feet.");
@@ -84,9 +89,9 @@ public class Menu {
 		myBoat.setBoatModel(userInputA);
 		System.out.println("Is your boat moving? Enter 1 for Yes or 0 No.");
 		i = sf.nextInt();
-		if(i == 1){
+		if (i == 1) {
 			myBoat.setMoving(true);
-		}else{
+		} else {
 			myBoat.setMoving(false);
 		}
 		System.out.println("How many engines does your boat have?");
@@ -103,17 +108,18 @@ public class Menu {
 		myBoat.setFuelCapacity(f);
 		System.out.println("How much fuel is in your boat now?");
 		f = sf.nextFloat();
-		if(f>myBoat.getFuelCapacity()){
+		if (f > myBoat.getFuelCapacity()) {
 			System.out.println("Error, can not enter more fuel than boat's fuel capacity.");
 			myBoat.addFuel();
-		}else{
+		} else {
 			myBoat.setFuelLevel(f);
 		}
 		myBoat.getStatus();
 		return myBoat;
 	}
-	
-	public static void printMenu(){
+
+	// method to print menu options
+	public static void printMenu() {
 		System.out.println("1 - Check Status");
 		System.out.println("2 - Anchor Boat");
 		System.out.println("3 - Sink Boat");
